@@ -1,11 +1,3 @@
-<footer class="page-footer amber accent-3">
-<div class="footer-copyright amber darken-2">
-            <div class="container amber darken-2">
-            <b>© 2015 by Hackspace</b>
-            <a class="grey-text text-lighten-4 right" href="#!"><b>Ruteame.pe</b></a>
-            </div>
-          </div>
-</footer>
 <script type="text/javascript" src="<?php echo base_url() ?>f/static/js/jquery.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>f/static/js/materialize.min.js"></script>
 <script type="text/javascript">

@@ -41,7 +41,14 @@
         </div>
 
 
-
+        <footer class="page-footer amber accent-3">
+            <div class="footer-copyright amber darken-2">
+                <div class="container amber darken-2">
+                <b>© 2015 by Hackspace</b>
+                <a class="grey-text text-lighten-4 right" href="#!"><b>Ruteame.pe</b></a>
+                </div>
+              </div>
+        </footer>
         <?php $this->load->view('home/partial/foot'); ?>
         <script>
             $(document).ready(function() {
