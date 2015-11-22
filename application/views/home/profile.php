@@ -10,9 +10,9 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-image">
-                            <img src="<?php echo $user->media_media_url; ?>" class="back2">
+                            <img src="<?php echo $user->user_profile_background_image_url; ?>" class="back2">
 
-                            <span class="card-title"><b><?php echo $user->country; ?></b></span>
+                            <!--<span class="card-title"><b><?php echo $user->country; ?></b></span>-->
 
                         </div>
                         <div class="chip" style="margin: 1em;">

@@ -19,8 +19,7 @@ class Home extends CI_Controller
     public function profile_user($tweetId)
     {
         $user = $this->parseDataDetalle($tweetId);
-        $results = $this->parseDataReTwitter($tweetId);
-//        $result = $this->parseDataDetalle($tweetId);
+        $results = $this->parseDataUserTwitter($user->screen_name);
         $this->load->view('home/profile', array('results' => $results, 'user' => $user));
     }
 
@@ -43,6 +42,7 @@ class Home extends CI_Controller
                     'user_name' => isset($result->user->name) ? $result->user->name : null,
                     'screen_name' => isset($result->user->screen_name) ? $result->user->screen_name : null,
                     'user_screen_name' => isset($result->user->screen_name) ? $result->user->screen_name : null,
+                    'user_profile_background_image_url' => isset($result->user->profile_background_image_url) ? $result->user->profile_background_image_url : null,
                     'user_profile_image_url' => isset($result->user->profile_image_url) ? $result->user->profile_image_url : null,
                     'media_media_url' => isset($result->entities->media[0]->media_url) ? $result->entities->media[0]->media_url : null,
                     'country' => $country,
@@ -134,6 +134,29 @@ class Home extends CI_Controller
             $date->setTimezone(new DateTimeZone('America/New_York'));
             $formattedDate = $date->format('H:i, M d');
             
+            $country = $this->getHashtags($result->text);
+            $data = array(
+                'country' => $country,
+                'created_at' => $formattedDate,
+                'text' => $result->text,
+                'user_name' => isset($result->user->name) ? $result->user->name : null,
+                'user_profile_image_url' => isset($result->user->profile_image_url) ? $result->user->profile_image_url : null,
+                'media_media_url' => isset($result->entities->media[0]->media_url) ? $result->entities->media[0]->media_url : null,
+            );
+            $datos[] = (object) $data;
+        }
+        
+        return $datos;
+    }
+    
+    private function parseDataUserTwitter($screenName)
+    {
+        $results = $this->getDataUserTwitter($screenName);
+        $datos  = array();
+        foreach ($results as $result) {
+            $date = new DateTime($result->created_at);
+            $date->setTimezone(new DateTimeZone('America/New_York'));
+            $formattedDate = $date->format('H:i, M d');
             $country = $this->getHashtags($result->text);
             $data = array(
                 'country' => $country,
